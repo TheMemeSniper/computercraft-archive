@@ -9,43 +9,14 @@ function startMining()
     rowNav("left")    
     mineRow("up") -- third row
     rowNav("up3")
-    mineRow("down")
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midcorn") -- navigate to inner rows
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midu")
-    mineRow("down")
-    rowNav("midcorn")
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midu")
-    mineRow("down")
-    rowNav("midcorn")
-    rowNav("midcorn")
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midu")
-    mineRow("down")
-    rowNav("midcorn")
-    rowNav("midcorn")
-    mineRow("down")
-    rowNav("midu")
-    mineRow("down")
-    rowNav("up1")
-    mineRow("down")
-    rowNav("right")
-    mineRow("down")
-    rowNav("left")
-    mineRow("down")
+	mineRingRow("right", "down")
+    rowNav("rightmid")
+    mineRingRow("right", "down")
+    rowNav("leftmid")
+    mineRingRow("right", "down")
     rowNav("dropoff")
-    os.sleep(1)
     rowNav("home")
+
 end
 
 function rowNav(direction)
@@ -76,25 +47,35 @@ function rowNav(direction)
         turtle.forward()
         turtle.turnRight()
         turtle.forward()
-    elseif direction == "midu" then
+    elseif direction == "rightmid" then
+        turtle.forward()
+        turtle.turnRight()
+        turtle.forward()
+        turtle.forward()
+        turtle.forward()
+        turtle.forward()
+        turtle.forward()
+        turtle.turnRight()
+        turtle.forward()
+    elseif direction == "leftmid" then
         turtle.turnLeft()
         turtle.forward()
         turtle.turnLeft()
-    elseif direction == "up1" then
-        turtle.up()
-        turtle.turnRight()
-        turtle.forward()
-        turtle.turnRight()
     elseif direction == "dropoff" then
-        turtle.forward()
         turtle.forward()
         for i=1,3 do
             turtle.down()
         end
         turtle.turnLeft()
-        for i=1,6 do
+        turtle.turnLeft()
+        for i=1,8 do
             turtle.forward()
         end
+        turtle.up()
+        turtle.forward()
+        turtle.turnLeft()
+        turtle.forward()
+        os.sleep(1)
     elseif direction == "home" then
         turtle.turnLeft()
         turtle.forward()
@@ -128,12 +109,52 @@ function mineRow(direction)
     end
 end
 
+function mineRingRow(face, direction)
+    for i=1,2 do
+        mineRing(face, direction)
+        for i=1,3 do
+            turtle.forward()
+        end
+    end
+    mineRing(face, direction)
+end
+
+function mineRing(face, direction)
+	if (face == "left") then
+        turtle.turnLeft()
+        ameMine("forward")
+        turtle.turnRight()
+		for i=1,4 do
+			ameMine(direction)
+			turtle.forward()
+			turtle.turnLeft()
+			turtle.forward()
+			ameMine(direction)
+		end
+	elseif (face == "right") then
+        turtle.turnRight()
+        ameMine("forward")
+        turtle.turnLeft()
+		for i=1,4 do
+			ameMine(direction)
+			turtle.forward()
+			turtle.turnRight()
+			turtle.forward()
+			ameMine(direction)
+		end
+	else
+		error(face.." is not a valid face for mineRing")
+	end
+end
+
 function ameMine(dir)
     if ameExist(dir) then
         if dir == "up" then
             turtle.digUp()
         elseif dir == "down" then
             turtle.digDown()
+        elseif dir == "forward" then
+            turtle.dig()
         else
             error(dir.." is not a valid direction for ameMine")
         end
@@ -148,6 +169,8 @@ function ameExist(side)
         return turtle.compareUp("minecraft:amethyst_cluster")
     elseif side == "down" then
         return turtle.compareDown("minecraft:amethyst_cluster")
+    elseif side == "forward" then
+        return turtle.compare("minecraft:amethyst_cluster")
     else
         error(side.." is not a valid side for mineRow")
     end
