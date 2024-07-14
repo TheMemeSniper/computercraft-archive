@@ -177,9 +177,13 @@ function ameExist(side)
 end
 
 log("starting up")
-log("please put an amethyst cluster in the selected slot")
-os.pullEvent("turtle_inventory")
-if (turtle.getItemDetail().name ~= "minecraft:amethyst_cluster") then error("selected item is not an amethyst cluster") end
+if (turtle.getItemDetail().name ~= "minecraft:amethyst_cluster") then
+    while true do
+        log("please put an amethyst cluster in the selected slot")
+        os.pullEvent("turtle_inventory")
+        if (turtle.getItemDetail().name == "minecraft:amethyst_cluster") then break end
+    end
+end
 runs = 0
 while true do
     runs = runs + 1

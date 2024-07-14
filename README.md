@@ -14,4 +14,4 @@ this program requires an advanced mining turtle (normal mining turtle might work
 improvements that could be made:
 - ~~replace a ton of the `startMining()` function with simpler and faster `rowNav()` commands, like just doing a ring around the top of every cluster to get the sides and the top~~
 - replace `turtle.compare*()` functions with `turtle.inspect()` to remove the dependency on the amethyst cluster in the selected slot
-- detect if there's already an amethyst cluster in the inventory on startup
+- ~~detect if there's already an amethyst cluster in the inventory on startup~~
