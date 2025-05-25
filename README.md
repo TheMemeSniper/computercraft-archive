@@ -15,3 +15,11 @@ improvements that could be made:
 - ~~replace a ton of the `startMining()` function with simpler and faster `rowNav()` commands, like just doing a ring around the top of every cluster to get the sides and the top~~
 - replace `turtle.compare*()` functions with `turtle.inspect()` to remove the dependency on the amethyst cluster in the selected slot
 - ~~detect if there's already an amethyst cluster in the inventory on startup~~
+
+# [lift-controller](./lift-controller/)
+i made this to make a large-scale elevator for my cactus farm, which goes from the bottom of the world to the top of the world. i originally used redstone links to control the elevator, but they have limited range. you know what has unlimited range though? ender modem 🤑
+
+improvements that could be made:
+- field to change the amount of floors you traverse with a click
+- auto-leveling
+- nicer client ui in general
