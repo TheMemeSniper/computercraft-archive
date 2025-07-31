@@ -23,3 +23,11 @@ improvements that could be made:
 - field to change the amount of floors you traverse with a click
 - auto-leveling
 - nicer client ui in general
+
+# [factory-monitor](./factory-monitor)
+bundle of scripts to autenticate access to a computer running the factory monitoring software, sha256 hashed disk password protection optional
+
+barebones setup in the script uses a computercraft: create bridge display target to monitor su and it sends you a notification if the network enters overstress
+
+improvements that could be made:
+- modular system for the loop instead of hacking shit into the script
